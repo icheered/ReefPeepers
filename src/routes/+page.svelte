@@ -40,7 +40,7 @@
 </script>
 
 <div class="flex flex-col justify-center place-items-center pt-4">
-	<div class="text-6xl pb-2">ReefPeepers</div>
+	<div class="text-4xl">ReefPeepers</div>
 	<a href="https://icheered.nl/" target="_blank">
 		Made by <span class="underline text-orange-500"> ICheered </span>
 	</a>
