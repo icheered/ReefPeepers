@@ -29,7 +29,7 @@ async function getAllSpecies() {
     }
 };
 
-async function deleteSpecies(id) {
+async function deleteSpecies(id: string) {
     try {
         const response = await fetch(`/api/species/${id}`, {
             method: 'DELETE'
@@ -41,4 +41,17 @@ async function deleteSpecies(id) {
     }
 };
 
-export { uploadData, getAllSpecies, deleteSpecies };
+async function toggleSpeciesSeen(id: string) {
+    try {
+        const response = await fetch(`/api/species/${id}`, {
+            method: 'PUT'
+        });
+
+        if (!response.ok) throw new Error('Failed to toggle species seen');
+        return response.json();
+    } catch (e) {
+        console.error('Error toggling species seen: ', e);
+    }
+}
+
+export { uploadData, getAllSpecies, deleteSpecies, toggleSpeciesSeen };

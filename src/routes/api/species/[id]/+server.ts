@@ -43,3 +43,37 @@ export async function DELETE({ params }) {
     }
 }
 
+export async function PUT({ params }) {
+    const { id } = params; // get the ID from the request parameters
+
+    try {
+        // Fetch the species
+        const species = await prisma.species.findUnique({
+            where: { id: Number(id) },
+        });
+
+        if (!species) {
+            return new Response(JSON.stringify({ error: 'Species not found' }), {
+                status: 404,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+
+        // Toggle the 'seen' status of the species
+        const updatedSpecies = await prisma.species.update({
+            where: { id: Number(id) },
+            data: { seen: !species.seen },
+        });
+
+        // Return the updated species
+        return new Response(JSON.stringify(updatedSpecies), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+    } catch (error) {
+        // Handle the error
+        console.error("Error: ", error);
+        return new Response(JSON.stringify(error), { status: 500 });
+    }
+}

@@ -12,4 +12,5 @@ model Species {
   id    Int    @id @default(autoincrement())
   name  String
   image String
+  seen  Boolean @default(false)
 }
