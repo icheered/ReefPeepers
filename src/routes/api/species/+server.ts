@@ -33,8 +33,7 @@ export async function GET() {
         let species = await prisma.species.findMany();
 
         species = await Promise.all(species.map(async species => {
-            const url = getFileBrowserFileURL(species.image);
-            return { ...species, image: url };
+            return { ...species };
         }));
 
         return new Response(JSON.stringify(species), {

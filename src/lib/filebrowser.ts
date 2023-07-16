@@ -37,7 +37,8 @@ export async function deleteFromFileBrowser(fileName: string) {
     return res;
 }
 
-export function getFileBrowserFileURL(fileName: string) {
-    const url = `${FILEBROWSER_URL}/api/raw/${FILEBROWSER_FILEPREFIX}/${fileName}`
-    return url;
+export async function getFileBrowserFileURL(fileName: string) {
+    const token = await getToken();
+    const url = `${FILEBROWSER_URL}/api/raw/${fileName}`
+    return { url, token }
 }

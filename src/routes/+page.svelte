@@ -121,7 +121,7 @@
 				>
 					<img
 						class="rounded-md border-4 {item.seen ? 'saturate-100' : 'saturate-0'}"
-						src={item.image}
+						src={`/api/image/${item.image}`}
 						alt={item.name}
 						class:border-primary-light={item.seen}
 						class:dark:border-primary-dark={item.seen}
